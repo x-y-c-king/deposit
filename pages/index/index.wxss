@@ -1,0 +1,39 @@
+/**index.wxss**/
+.container {
+  width: 750rpx;
+  height: 100vh;
+}
+.map {
+  width: 100%;
+  height: 100%;
+}
+.customCallout{
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: red;
+  border-radius: 30rpx;
+  color: white;
+}
+
+/* .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+} */

@@ -1,0 +1,34 @@
+{
+  "pages": [  
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/people/people"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示!"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "礼存",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    },
+    {
+      "pagePath": "pages/logs/logs",
+      "text": "订单"
+    },{
+      "pagePath": "pages/people/people",
+      "text": "个人中心"
+    }]
+
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

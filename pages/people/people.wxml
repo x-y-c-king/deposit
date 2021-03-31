@@ -1,0 +1,6 @@
+<!--pages/people/people.wxml-->
+<text>
+  pages/people/people.wxml
+<text bindtap="chile">{{ msg }}</text>
+<block bindtap="chile">{{ msg }} </block>
+</text>
