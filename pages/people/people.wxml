@@ -1,6 +1,23 @@
 <!--pages/people/people.wxml-->
-<text>
-  pages/people/people.wxml
-<text bindtap="chile">{{ msg }}</text>
-<block bindtap="chile">{{ msg }} </block>
-</text>
+<view>
+  <view class="user-info">
+    <view class="unlogin"  wx:if="{{!isLogin}}">
+      <view class="null-icon">
+        <view bindtap="PeopleLogin" class="btn-login">点击登录</view>
+      </view>
+    </view>
+    <view class="login"  wx:else>
+      <view class="avatar">
+        <image src="{{UserInfo.avatar}}" class="img"></image>
+      </view>
+        <!-- <img src="" alt="" srcset="" /> -->
+      <view class="user-info">
+        <text>{{ UserInfo.nickName }}</text>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+
+  </view>
+  <!-- <view></view> -->
+</view>

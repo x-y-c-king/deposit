@@ -32,8 +32,14 @@ App({
         }
       }
     })
+    let user = wx.getStorageSync('UserInfo') || null;
+    if(user !== null) {
+      this.globalData.userInfo = user;
+      this.globalData.isLogin = true;
+    }
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    isLogin: false
   }
 })
