@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "查看启动日志",
-  "usingComponents": {}
+  "usingComponents": {
+    "navigation-bar": "./../../components/navigation/navigation-bar"
+  }
 }

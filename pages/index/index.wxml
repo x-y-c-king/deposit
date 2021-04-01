@@ -1,23 +1,55 @@
 <!--index.wxml-->
 <view class="container">
 	<block vx:if='{{ hashMapShow }}'>
-		<map name="location" id="myMap" class="map" longitude='{{ log }}' latitude="{{ lat }}" scale='16'
-			show-location='{{ true }}' markers='{{ markers }}' bindcallouttap="callouttap" bindlabeltap="labeltap"
-			bindmarkertap='handleMaker'>
+		<!-- markers='{{ markers }}' -->
+		<map  name="location" id="map" enable-poi="{{ true }}" 
+			class="map" markers='{{ markers }}'
+			
+			longitude='{{selectLog || log }}' latitude="{{selectLat || lat }}" scale='16' show-location='{{ true }}'
+			bindcallouttap="callouttap" bindlabeltap="labeltap" bindmarkertap='handleMaker'
+			bindlabeltap='handleLabel'
+			bindtap='handleMap'>
 
 			<cover-view slot="callout">
 				<block wx:for="{{markers}}" vx:for-index="index" wx:key="index">
 					<cover-view class="customCallout" marker-id="{{item.id}}">
-						{{ item.id }}
+						<!-- <block>
+							<image  src="/image/location.png"></image>
+						</block> -->
+						<cover-image src="/image/location.png"></cover-image>
 					</cover-view>
 				</block>
-				<!-- <cover-view marker-id='1'>1</cover-view>
-				<cover-view marker-id='2'>2</cover-view>
-				<cover-view marker-id='3'>3</cover-view> -->
 			</cover-view>
-
 		</map>
+		<view class="info" wx:if="{{showMaker}}">
+			<view class="detail-info">
+				<view class="detail-img">
+					<image src="http://thirdqq.qlogo.cn/g?b=oidb&k=7GXVHxgiaxYjhic7P6f7X4Pw&s=100&t=1614320303"></image>
+				</view>
+				<view class="detail-text">
+					<view class="name"> <text>重庆北站寄存点（商场）</text></view>
+
+					<view class="price">
+						<text>10元/件/天</text>
+						<text>5元/件/天</text>
+					</view>
+					<view class="timer">
+						<text class="timer">8：30-20：00</text>
+					</view>
+					<view class="address">
+						<!-- <icon icon="location"></icon> -->
+						<text>重庆市渝北区黄山大道东路王家桥社区8栋</text>
+					</view>
+
+					<view class="btn">
+						<text>查看详情></text>
+					</view>
+				</view>
+			</view>
+			<view></view>
+		</view>
 	</block>
+
 
 </view>
 

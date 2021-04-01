@@ -1,5 +1,6 @@
 <!--logs.wxml-->
 <view class="container log-list">
+  <navigation-bar default-data="{{defaultData}}"></navigation-bar>
   <block wx:for="{{logs}}" wx:for-index='index' wx:for-item='logs' wx:key='index'>
     <text class="log-item">{{index + 1}}. {{logs}}</text>
   </block>

@@ -1,9 +1,12 @@
 //logs.js
 const util = require('../../utils/util.js')
-
+const app = getApp();
 Page({
   data: {
-    logs: []
+    logs: [],
+    defaultData: {
+      title: "订单中心", // 导航栏标题
+    }
   },
   onLoad: function () {
     this.setData({

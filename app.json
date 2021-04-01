@@ -3,18 +3,18 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/people/people"
-    
   ],
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示!"
+      "desc": "用户获取位置信息!"
     }
   },
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "礼存",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
   
   "tabBar": {

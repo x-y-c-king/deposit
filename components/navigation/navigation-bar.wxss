@@ -1,0 +1,22 @@
+/* components/navigation-bar.wxss */
+.nav-bar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: #409EFF;
+}
+
+.nav-bar view {
+  width: 60%;
+  font-size: 16px;
+  position: absolute;
+  padding-left: 30rpx;
+  color: white;
+  text-align: center;
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

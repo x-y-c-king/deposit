@@ -1,4 +1,5 @@
 <!--pages/people/people.wxml-->
+<navigation-bar default-data="{{ defaultData }}"></navigation-bar>
 <view>
   <view class="user-info">
     <view class="unlogin"  wx:if="{{!isLogin}}">

@@ -11,41 +11,82 @@ Page({
 		canIUse: wx.canIUse('button.open-type.getUserInfo'),
 		lat: null,
 		log: null,
+		selectLat: null,
+		selectLog: null,
 		markers: [],
-		hashMapShow: false
+		hashMapShow: false,
+		showMaker: false,
+		mapCtx:null,
+		controls: '40'
+	},
+	onReady: function() {
+		this.data.mapCtx = wx.createMapContext('map')
+		// console.log(this.data.mapCtx)
+
 	},
 	//事件处理函数
 	bindViewTap: function () {
 		wx.navigateTo({
 			url: '../logs/logs'
 		})
+	},handleControl:function(e){
+		console.log("点击了控件")
 	},
-	handleMaker: function (marker) {
-		console.log(marker.markerId);
+	handleMaker: function (marker) { //点击地图时候触发
+		// console.log()
+		let key = marker.detail.markerId
+		const item = this.data.markers[key - 1] || {}
+	
+		
+		
+		// console.log(this.data.markers[key])
+		this.setData({
+			// selectLog: item.longitude,
+			// selectLat: item.latitude,
+			showMaker: true,
+		})
+		console.log(item)
+		this.data.mapCtx.moveToLocation({
+			longitude:item.longitude,
+			latitude:item.latitude,
+			success:(res)=>{console.log(res)}
+		})
+
+	},
+	handleLabel(e) {
+		console.log(e)
+	},
+	handleMap: function(e) {
+		// console.log(e)
+		this.setData({
+			showMaker:false
+		})
 	},
 	callouttap: function () {},
 	labeltap: function () {},
-
+	
 	onLoad: function () {
 		wx.getLocation({
-			type: 'wgs84',
+			type: 'gcj02',
 			success: (res) => {
+				// console.log(res)
 				var latitude = res.latitude // 纬度
 				var longitude = res.longitude // 经度
 				var markers = [];
 				for (var i = 0; i < 10; i++) {
 					markers.push({
 						id: i + 1,
-						longitude: longitude - i * 0.005,
-						latitude: latitude,
+						longitude: longitude - i * 0.0010,
+						latitude: latitude - i * 0.0010,
 						iconPath: '/image/location.png',
+						width: 50,
+						height:50,
 						customCallout: {
-							anchorY: 0,
+							anchorY: 60,
 							anchorX: 0,
 							display: 'BYCLICK'
-						},
+						}
 					})
-
 				}
 				this.setData({
 					lat: latitude,
@@ -53,7 +94,7 @@ Page({
 					markers,
 					hashMapShow: true,
 				})
-				console.log(markers instanceof Array);
+				// console.log(markers instanceof Array);
 			}
 		})
 
@@ -85,11 +126,11 @@ Page({
 		// }
 	},
 	getUserInfo: function (e) {
-		console.log(e)
-		app.globalData.userInfo = e.detail.userInfo
-		this.setData({
-			userInfo: e.detail.userInfo,
-			hasUserInfo: true
-		})
+		// console.log(e)
+		// app.globalData.userInfo = e.detail.userInfo
+		// this.setData({
+		// 	userInfo: e.detail.userInfo,
+		// 	hasUserInfo: true
+		// })
 	}
 })
