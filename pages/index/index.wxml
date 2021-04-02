@@ -10,16 +10,14 @@
 			bindlabeltap='handleLabel'
 			bindtap='handleMap'>
 
-			<cover-view slot="callout">
+			<!-- <cover-view slot="callout">
 				<block wx:for="{{markers}}" vx:for-index="index" wx:key="index">
 					<cover-view class="customCallout" marker-id="{{item.id}}">
-						<!-- <block>
-							<image  src="/image/location.png"></image>
-						</block> -->
+					
 						<cover-image src="/image/location.png"></cover-image>
 					</cover-view>
 				</block>
-			</cover-view>
+			</cover-view> -->
 		</map>
 		<view class="info" wx:if="{{showMaker}}">
 			<view class="detail-info">

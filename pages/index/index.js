@@ -17,7 +17,8 @@ Page({
 		hashMapShow: false,
 		showMaker: false,
 		mapCtx:null,
-		controls: '40'
+		controls: '40',
+		lastIndex: null,
 	},
 	onReady: function() {
 		this.data.mapCtx = wx.createMapContext('map')
@@ -33,19 +34,41 @@ Page({
 		console.log("点击了控件")
 	},
 	handleMaker: function (marker) { //点击地图时候触发
-		// console.log()
-		let key = marker.detail.markerId
-		const item = this.data.markers[key - 1] || {}
-	
-		
-		
-		// console.log(this.data.markers[key])
+		// console.log(marker)
+		if(this.data.lastIndex !== null) {
+			let then = this.data.markers;
+			console.log(this.data.lastItem)
+			then[this.data.lastIndex].width = 50;
+			then[this.data.lastIndex].height = 50;
+			this.setData({
+				markers:then
+			})
+		}
+		let id = marker.detail.markerId
+		let key;
+		for(let i=0;i<this.data.markers.length;i++) {
+			let item = this.data.markers[i];
+			if(item.id === id) {
+				key = i;
+				break;
+			}
+		}
+		const item = this.data.markers[key];
+		this.setData({
+			lastIndex: key
+		})
+		// this.data.lastItem = this.data.markers[key];
+		let then = this.data.markers;
+		then[key].width = 80;
+		then[key].height = 80;
+
 		this.setData({
 			// selectLog: item.longitude,
 			// selectLat: item.latitude,
 			showMaker: true,
+			markers:then
 		})
-		console.log(item)
+		// console.log(item)
 		this.data.mapCtx.moveToLocation({
 			longitude:item.longitude,
 			latitude:item.latitude,
@@ -58,9 +81,19 @@ Page({
 	},
 	handleMap: function(e) {
 		// console.log(e)
-		this.setData({
-			showMaker:false
-		})
+		if(this.data.lastIndex !== null) {
+			let then = this.data.markers;
+			console.log(this.data.lastItem)
+			then[this.data.lastIndex].width = 50;
+			then[this.data.lastIndex].height = 50;
+			this.setData({
+				markers:then,
+				showMaker:false
+			})
+		}
+		// this.setData({
+			
+		// })
 	},
 	callouttap: function () {},
 	labeltap: function () {},
@@ -81,11 +114,11 @@ Page({
 						iconPath: '/image/location.png',
 						width: 50,
 						height:50,
-						customCallout: {
-							anchorY: 60,
-							anchorX: 0,
-							display: 'BYCLICK'
-						}
+						// customCallout: {
+						// 	anchorY: 60,
+						// 	anchorX: 0,
+						// 	display: 'BYCLICK'
+						// }
 					})
 				}
 				this.setData({
