@@ -14,7 +14,58 @@ Page({
     },
     defaultData: {
       title: "个人中心", // 导航栏标题
-    }
+    },
+    List:[{
+        "id": 1,
+        "icon": "friends-o",
+        "title": "商家入驻"
+      },
+      {
+        "id": 2,
+        "icon": "coupon-o",
+        "title": "我的优惠券"
+      },
+      {
+        "id": 3,
+        "icon": "orders-o",
+        "title": "用户协议"
+      },
+      {
+        "id": 4,
+        "icon": "bulb-o",
+        "title": "隐私政策"
+      },
+      {
+        "id": 5,
+        "icon": "setting-o",
+        "title": "设置"
+      },
+      {
+        "id": 1,
+        "icon": "friends-o",
+        "title": "商家入驻"
+      },
+      {
+        "id": 2,
+        "icon": "coupon-o",
+        "title": "我的优惠券"
+      },
+      {
+        "id": 3,
+        "icon": "orders-o",
+        "title": "用户协议"
+      },
+      {
+        "id": 4,
+        "icon": "bulb-o",
+        "title": "隐私政策"
+      },
+      {
+        "id": 5,
+        "icon": "setting-o",
+        "title": "设置"
+      }
+    ],
   },
   chile: function (e) {
     console.log(e);
@@ -38,6 +89,9 @@ Page({
    */
   onReady: function () {
 
+  },
+  handleCellClick: function(event) {
+    console.log(event.target.dataset['item'])
   },
 
   /**

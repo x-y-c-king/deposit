@@ -1,8 +1,10 @@
 {
-  "pages": [  
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/people/people"
+    "pages/order/order",
+    "pages/people/people",
+    "pages/business/index",
+    "page/detail/index"
   ],
   "permission": {
     "scope.userLocation": {
@@ -25,7 +27,7 @@
       "selectedIconPath": "./image/select-home.png"
     },
     {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/order/order",
       "text": "订单",
       "iconPath": "./image/order.png",
       "selectedIconPath": "./image/select-order.png"
@@ -36,6 +38,5 @@
       "selectedIconPath": "./image/select-my.png"
     }]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast"
 
 Page({
 	data: {
@@ -21,6 +21,7 @@ Page({
 		lastIndex: null,
 	},
 	onReady: function() {
+		
 		this.data.mapCtx = wx.createMapContext('map')
 		// console.log(this.data.mapCtx)
 
@@ -34,7 +35,6 @@ Page({
 		console.log("点击了控件")
 	},
 	handleMaker: function (marker) { //点击地图时候触发
-		// console.log(marker)
 		if(this.data.lastIndex !== null) {
 			let then = this.data.markers;
 			console.log(this.data.lastItem)

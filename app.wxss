@@ -1,4 +1,4 @@
-/**app.wxss**/
+
 .container {
   width: 750rpx;
   height: 100%;
@@ -7,5 +7,6 @@
   align-items: center;
   justify-content: space-between;
   /* padding: 200rpx 0; */
+  overflow: hidden;
   box-sizing: border-box;
 } 

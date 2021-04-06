@@ -2,23 +2,27 @@
 <navigation-bar default-data="{{ defaultData }}"></navigation-bar>
 <view>
   <view class="user-info">
-    <view class="unlogin"  wx:if="{{!isLogin}}">
+    <view class="unlogin" wx:if="{{!isLogin}}">
       <view class="null-icon">
         <view bindtap="PeopleLogin" class="btn-login">点击登录</view>
       </view>
     </view>
-    <view class="login"  wx:else>
+    <view class="login" wx:else>
       <view class="avatar">
         <image src="{{UserInfo.avatar}}" class="img"></image>
       </view>
-        <!-- <img src="" alt="" srcset="" /> -->
+      <!-- <img src="" alt="" srcset="" /> -->
       <view class="user-info">
         <text>{{ UserInfo.nickName }}</text>
       </view>
     </view>
   </view>
   <view class="list">
+    <van-cell-group custom-class="cell-group">
+      <van-cell icon="{{ item.icon }}" title="{{ item.title }}" wx:for="{{List}}" data-item="{{item}}" wx:for-item='item'
+        wx:for-index='{{index}}' wx:key='index' is-link bindtap="handleCellClick" custom-class='my-cell' />
 
+    </van-cell-group>
   </view>
   <!-- <view></view> -->
 </view>

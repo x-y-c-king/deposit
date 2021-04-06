@@ -40,3 +40,15 @@
 .list {
   width: 100%;
 }
+/* .van-icon {
+  font-size: 32rpx !important;
+} */
+
+.my-cell {
+  font-size: 18px !important;
+  height: 120rpx !important;
+  line-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

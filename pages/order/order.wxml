@@ -1,0 +1,2 @@
+<!--pages/order/order.wxml-->
+<navigation-bar default-data="{{defaultData}}"></navigation-bar>
