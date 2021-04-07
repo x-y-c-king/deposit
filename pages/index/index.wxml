@@ -2,14 +2,11 @@
 <view class="container">
 	<block vx:if='{{ hashMapShow }}'>
 		<!-- markers='{{ markers }}' -->
-		<map  name="location" id="map" enable-poi="{{ true }}" 
-			class="map" markers='{{ markers }}'
-			
+		<map name="location" id="map" enable-poi="{{ true }}" class="map" markers='{{ markers }}'
 			longitude='{{selectLog || log }}' latitude="{{selectLat || lat }}" scale='16' show-location='{{ true }}'
-			bindcallouttap="callouttap" bindlabeltap="labeltap" bindmarkertap='handleMaker'
-			bindlabeltap='handleLabel'
+			bindcallouttap="callouttap" bindlabeltap="labeltap" bindmarkertap='handleMaker' bindlabeltap='handleLabel'
 			bindtap='handleMap'>
-
+			<!-- catchtap  -->
 			<!-- <cover-view slot="callout">
 				<block wx:for="{{markers}}" vx:for-index="index" wx:key="index">
 					<cover-view class="customCallout" marker-id="{{item.id}}">
@@ -22,24 +19,26 @@
 		<view class="info" wx:if="{{showMaker}}">
 			<view class="detail-info">
 				<view class="detail-img">
-					<image src="http://thirdqq.qlogo.cn/g?b=oidb&k=7GXVHxgiaxYjhic7P6f7X4Pw&s=100&t=1614320303"></image>
+					<image src="{{itemData.avatar}}"></image>
 				</view>
 				<view class="detail-text">
-					<view class="name"> <text>重庆北站寄存点（商场）</text></view>
+					<view class="name">
+						<text class="text">{{itemData.nickName}}</text>
+					</view>
 
 					<view class="price">
-						<text>10元/件/天</text>
-						<text>5元/件/天</text>
+						<text wx:for="{{itemData.price}}" wx:key="item">{{item.title}}</text>
+						<!-- <text>10元/件/天</text>
+						<text>5元/件/天</text> -->
 					</view>
 					<view class="timer">
-						<text class="timer">8：30-20：00</text>
+						<text class="timer">{{itemData.startTimer + itemData.endTimer}}</text>
 					</view>
 					<view class="address">
 						<!-- <icon icon="location"></icon> -->
-						<text>重庆市渝北区黄山大道东路王家桥社区8栋</text>
+						<text>{{itemData.address}}</text>
 					</view>
-
-					<view class="btn">
+					<view class="btn" bindtap="handleToDetail">
 						<text>查看详情></text>
 					</view>
 				</view>

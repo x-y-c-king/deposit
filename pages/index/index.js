@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+// import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast"
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast"
 
 Page({
@@ -19,11 +20,10 @@ Page({
 		mapCtx:null,
 		controls: '40',
 		lastIndex: null,
+		itemData:{}
 	},
 	onReady: function() {
-		
 		this.data.mapCtx = wx.createMapContext('map')
-		// console.log(this.data.mapCtx)
 
 	},
 	//事件处理函数
@@ -31,20 +31,12 @@ Page({
 		wx.navigateTo({
 			url: '../logs/logs'
 		})
-	},handleControl:function(e){
-		console.log("点击了控件")
+	},
+	handleControl:function(e){
 	},
 	handleMaker: function (marker) { //点击地图时候触发
-		if(this.data.lastIndex !== null) {
-			let then = this.data.markers;
-			console.log(this.data.lastItem)
-			then[this.data.lastIndex].width = 50;
-			then[this.data.lastIndex].height = 50;
-			this.setData({
-				markers:then
-			})
-		}
-		let id = marker.detail.markerId
+		// marker
+		let id = marker.detail.markerId;
 		let key;
 		for(let i=0;i<this.data.markers.length;i++) {
 			let item = this.data.markers[i];
@@ -53,9 +45,19 @@ Page({
 				break;
 			}
 		}
+		if(this.data.lastIndex !== null ) { //改变上一个点击的状态
+			let then = this.data.markers;
+			then[this.data.lastIndex].width = 50;
+			then[this.data.lastIndex].height = 50;
+			this.setData({
+				markers:then
+			})
+		}
 		const item = this.data.markers[key];
+		
 		this.setData({
-			lastIndex: key
+			lastIndex: key,
+			itemData: item.detail
 		})
 		// this.data.lastItem = this.data.markers[key];
 		let then = this.data.markers;
@@ -68,22 +70,18 @@ Page({
 			showMaker: true,
 			markers:then
 		})
-		// console.log(item)
 		this.data.mapCtx.moveToLocation({
 			longitude:item.longitude,
 			latitude:item.latitude,
-			success:(res)=>{console.log(res)}
+			success:(res)=>{}
 		})
 
 	},
 	handleLabel(e) {
-		console.log(e)
 	},
 	handleMap: function(e) {
-		// console.log(e)
 		if(this.data.lastIndex !== null) {
 			let then = this.data.markers;
-			console.log(this.data.lastItem)
 			then[this.data.lastIndex].width = 50;
 			then[this.data.lastIndex].height = 50;
 			this.setData({
@@ -91,18 +89,20 @@ Page({
 				showMaker:false
 			})
 		}
-		// this.setData({
-			
-		// })
 	},
 	callouttap: function () {},
 	labeltap: function () {},
+	handleToDetail: function(e) {
+		wx.navigateTo({
+			url: '../detail/index?item='+encodeURIComponent(JSON.stringify(this.data.itemData))
+			// events: this.data.itemData
+		})
+	},
 	
 	onLoad: function () {
 		wx.getLocation({
 			type: 'gcj02',
 			success: (res) => {
-				// console.log(res)
 				var latitude = res.latitude // 纬度
 				var longitude = res.longitude // 经度
 				var markers = [];
@@ -114,6 +114,18 @@ Page({
 						iconPath: '/image/location.png',
 						width: 50,
 						height:50,
+						detail:{
+							avatar:"http://thirdqq.qlogo.cn/g?b=oidb&k=7GXVHxgiaxYjhic7P6f7X4Pw&s=100&t=1614320303",
+							nickName: "重庆北站寄存点（商场）提交一个表单的成本在于怎么处理"+i,
+							price:[{
+								title:'10元/件/天'
+							},{
+								title:"5元/件/天"
+							}],
+							startTimer:"8：30",
+							endTimer:"20：00",
+							address: "重庆市渝北区黄山大道东路王家桥社区8栋"
+						}
 						// customCallout: {
 						// 	anchorY: 60,
 						// 	anchorX: 0,
@@ -127,7 +139,6 @@ Page({
 					markers,
 					hashMapShow: true,
 				})
-				// console.log(markers instanceof Array);
 			}
 		})
 
@@ -159,11 +170,5 @@ Page({
 		// }
 	},
 	getUserInfo: function (e) {
-		// console.log(e)
-		// app.globalData.userInfo = e.detail.userInfo
-		// this.setData({
-		// 	userInfo: e.detail.userInfo,
-		// 	hasUserInfo: true
-		// })
 	}
 })

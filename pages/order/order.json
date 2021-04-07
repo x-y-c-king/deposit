@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "navigation-bar": "./../../components/navigation/navigation-bar"
+    "navigation-bar": "./../../components/navigation/navigation-bar",
+    "van-icon":"/miniprogram_npm/@vant/weapp/icon/index"
   }
 }

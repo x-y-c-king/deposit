@@ -1,18 +1,28 @@
-// page/detail/index.js
+// pages/detail/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    defaultData: {
+      title: "店铺详情",
+      icon: true
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const item = JSON.parse(decodeURIComponent(options.item));
+    this.setData({
+      defaultData:{
+        title: item.nickName,
+        icon: true
+      }
+    })
+    console.log()
   },
 
   /**

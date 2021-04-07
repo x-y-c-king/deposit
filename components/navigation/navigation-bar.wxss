@@ -1,5 +1,6 @@
 /* components/navigation-bar.wxss */
 .nav-bar {
+  z-index: 10000;
   position: fixed;
   width: 100%;
   top: 0;
@@ -7,16 +8,43 @@
   color: #fff;
   background: #409EFF;
 }
-
-.nav-bar view {
-  width: 60%;
-  font-size: 16px;
+.nav-bar .bar-back {
+  width: 50px;
   position: absolute;
-  padding-left: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.nav-bar .bar-title {
+  width: 60%;
+  font-size: 36rpx;
+  position: absolute;
+  margin-left: 15rpx;
+  box-sizing: border-box;
   color: white;
   text-align: center;
   /* background-color: yellow; */
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  
+}
+.nav-bar .bar-title text {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.icon-back {
+  font-size: 40rpx;
+  width: 50rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* margin-right: 30rpx; */
+  /* padding:0 30rpx; */
+  /* position: absolute; */
+  /* left: 30rpx; */
+  
 }

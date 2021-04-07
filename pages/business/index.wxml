@@ -1,3 +1,42 @@
 <!--pages/business/index.wxml-->
 <!-- 商家入驻页面 -->
-<text>pages/business/index.wxml</text>
+<navigation-bar default-data="{{ defaultData }}"></navigation-bar>
+<van-cell-group>
+  <!-- <text>用户名</text> -->
+  <van-field label='店铺名称' model:value="{{ form.name }}" placeholder="请输入店铺名称" border="{{ false }}" />
+
+</van-cell-group>
+<van-cell-group>
+  <view class="upload">
+    <text>店铺头像</text>
+    <view>
+      <van-uploader label="店铺头像" file-list="{{ form.avatar }}" bind:after-read="afterRead" />
+    </view>
+  </view>
+</van-cell-group>
+<van-cell-group>
+  <van-field label='店铺负责人' model:value="{{ form.user }}" placeholder="请输入店铺负责人姓名" border="{{ false }}" />
+</van-cell-group>
+<van-cell-group>
+  <van-field label='联系方式' model:value="{{ form.tel }}" placeholder="请输入联系方式" border="{{ false }}" />
+</van-cell-group>
+<van-cell-group>
+  <van-field label='店铺位置' model:value="{{ form.address }}" placeholder="请输入店铺地址" border="{{ false }}" />
+</van-cell-group>
+
+<van-cell-group>
+  <van-field label='店铺位置' model:value="{{ form.address }}" placeholder="请输入店铺地址" border="{{ false }}" />
+</van-cell-group>
+
+<van-cell-group>
+  <view class="upload">
+    <text>获取经纬度</text>
+    <view>
+      <van-button round type="info">获取经纬度</van-button>
+    </view>
+  </view>
+</van-cell-group>
+  <view class="submit">
+    <van-button type="primary" round>提交</van-button>
+
+  </view>

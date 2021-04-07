@@ -8,10 +8,11 @@ Component({
     defaultData: {
       type: Object,
       value: {
-       title: "我是默认标题"
+        icon: false,
+        title: "寄存"
       },
-      observer: function(newVal, oldVal) {}
-     }
+      observer: function (newVal, oldVal) {}
+    }
   },
 
   /**
@@ -28,6 +29,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleBarBack(e) {
+      wx.navigateBack();
+    }
   }
 })

@@ -1,1 +1,35 @@
 /* pages/business/index.wxss */
+.upload {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);
+  box-sizing: border-box;
+  line-height: var(--cell-line-height,24px);
+  width: 100%;
+  background-color: var(--cell-background-color,#fff);
+}
+.upload > text{
+  display: block;
+  width: 150px;
+  color: var(--cell-text-color,#323233);
+  /* width: 28%; */
+  text-align: left;
+  font-size: 14px;
+  line-height: 44px;
+  height: 44px;
+}
+.upload > view {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.submit {
+  margin-top: 80rpx;
+}
+.submit .van-button{
+  width: 60%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}

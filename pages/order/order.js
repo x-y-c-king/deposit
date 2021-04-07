@@ -1,4 +1,5 @@
 // pages/order/order.js
+const app = getApp()
 Page({
 
   /**
@@ -7,7 +8,10 @@ Page({
   data: {
     defaultData: {
       title: "订单中心", // 导航栏标题
-    }
+      icon: false
+    },
+    order:[],
+    barHeight: app.globalData.navBarHeight
   },
 
   /**

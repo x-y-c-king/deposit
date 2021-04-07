@@ -21,7 +21,6 @@
     <van-cell-group custom-class="cell-group">
       <van-cell icon="{{ item.icon }}" title="{{ item.title }}" wx:for="{{List}}" data-item="{{item}}" wx:for-item='item'
         wx:for-index='{{index}}' wx:key='index' is-link bindtap="handleCellClick" custom-class='my-cell' />
-
     </van-cell-group>
   </view>
   <!-- <view></view> -->

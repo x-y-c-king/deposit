@@ -14,58 +14,33 @@ Page({
     },
     defaultData: {
       title: "个人中心", // 导航栏标题
+      icon: false
     },
-    List:[{
-        "id": 1,
-        "icon": "friends-o",
-        "title": "商家入驻"
-      },
-      {
-        "id": 2,
-        "icon": "coupon-o",
-        "title": "我的优惠券"
-      },
-      {
-        "id": 3,
-        "icon": "orders-o",
-        "title": "用户协议"
-      },
-      {
-        "id": 4,
-        "icon": "bulb-o",
-        "title": "隐私政策"
-      },
-      {
-        "id": 5,
-        "icon": "setting-o",
-        "title": "设置"
-      },
-      {
-        "id": 1,
-        "icon": "friends-o",
-        "title": "商家入驻"
-      },
-      {
-        "id": 2,
-        "icon": "coupon-o",
-        "title": "我的优惠券"
-      },
-      {
-        "id": 3,
-        "icon": "orders-o",
-        "title": "用户协议"
-      },
-      {
-        "id": 4,
-        "icon": "bulb-o",
-        "title": "隐私政策"
-      },
-      {
-        "id": 5,
-        "icon": "setting-o",
-        "title": "设置"
-      }
-    ],
+    List: [{
+      "id": 1,
+      "icon": "friends-o",
+      "title": "商家入驻"
+    }, {
+      "id": 2,
+      "icon": "friends-o",
+      "title": "店铺管理"
+    }, {
+      "id": 3,
+      "icon": "coupon-o",
+      "title": "我的优惠券"
+    }, {
+      "id": 4,
+      "icon": "orders-o",
+      "title": "用户协议"
+    }, {
+      "id": 5,
+      "icon": "bulb-o",
+      "title": "隐私政策"
+    }, {
+      "id": 6,
+      "icon": "setting-o",
+      "title": "设置"
+    }],
   },
   chile: function (e) {
     console.log(e);
@@ -76,7 +51,7 @@ Page({
    */
   onLoad: function (options) {
     if (app.globalData.isLogin) {
-      console.log(app)
+      // console.log(app)
       this.setData({
         UserInfo: app.globalData.userInfo,
         isLogin: true
@@ -90,8 +65,20 @@ Page({
   onReady: function () {
 
   },
-  handleCellClick: function(event) {
-    console.log(event.target.dataset['item'])
+  handleCellClick: function (event) {
+    // console.log(event.target.dataset['item'])
+    const item = event.target.dataset['item'];
+    switch (item.id) {
+      case 1:
+        wx.navigateTo({
+          url: '../business/index',
+        })
+        break;
+      case 2:
+        break;
+      default:
+        console.log("信息不存在！")
+    }
   },
 
   /**
@@ -156,14 +143,12 @@ Page({
   },
   sendUserInfo: function (userInfo, userid) {
     let url = '/user/setUserInfo'
-    // console.log(url)
     api.setUserInfo(url, {
       userid,
       avater: userInfo.avatarUrl,
       name: userInfo.nickName,
       gender: userInfo.gender
     }).then(res => {
-      console.log(res)
 
     })
 
