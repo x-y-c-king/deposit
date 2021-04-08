@@ -8,7 +8,9 @@ Page({
     defaultData: {
       title: "店铺详情",
       icon: true
-    }
+    },
+    itemData: {},
+    markers: []
   },
 
   /**
@@ -16,11 +18,20 @@ Page({
    */
   onLoad: function (options) {
     const item = JSON.parse(decodeURIComponent(options.item));
+    const marker = [{
+      longitude: item.longitude,
+      latitude: item.latitude,
+      iconPath: '/image/location.png',
+      width: 65,
+      height: 65,
+    }]
     this.setData({
-      defaultData:{
-        title: item.nickName,
+      itemData: item,
+      defaultData: {
+        title: item.detail.nickName,
         icon: true
-      }
+      },
+      markers:marker
     })
     console.log()
   },
@@ -72,5 +83,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  handleScrollTop: function(e) {
+    console.log(e)
   }
 })

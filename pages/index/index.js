@@ -20,7 +20,8 @@ Page({
 		mapCtx:null,
 		controls: '40',
 		lastIndex: null,
-		itemData:{}
+		itemData:{},
+		item: {}
 	},
 	onReady: function() {
 		this.data.mapCtx = wx.createMapContext('map')
@@ -57,7 +58,8 @@ Page({
 		
 		this.setData({
 			lastIndex: key,
-			itemData: item.detail
+			itemData: item.detail,
+			item:item
 		})
 		// this.data.lastItem = this.data.markers[key];
 		let then = this.data.markers;
@@ -94,7 +96,7 @@ Page({
 	labeltap: function () {},
 	handleToDetail: function(e) {
 		wx.navigateTo({
-			url: '../detail/index?item='+encodeURIComponent(JSON.stringify(this.data.itemData))
+			url: '../detail/index?item='+encodeURIComponent(JSON.stringify(this.data.item))
 			// events: this.data.itemData
 		})
 	},
@@ -116,7 +118,7 @@ Page({
 						height:50,
 						detail:{
 							avatar:"http://thirdqq.qlogo.cn/g?b=oidb&k=7GXVHxgiaxYjhic7P6f7X4Pw&s=100&t=1614320303",
-							nickName: "重庆北站寄存点（商场）提交一个表单的成本在于怎么处理"+i,
+							nickName: "重庆北站寄存点"+i,
 							price:[{
 								title:'10元/件/天'
 							},{

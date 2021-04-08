@@ -9,7 +9,7 @@
   background: #409EFF;
 }
 .nav-bar .bar-back {
-  width: 50px;
+  width: 50rpx;
   position: absolute;
   display: flex;
   align-items: center;
@@ -30,6 +30,7 @@
   
 }
 .nav-bar .bar-title text {
+  text-align: left;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;

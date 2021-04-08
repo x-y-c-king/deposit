@@ -1,2 +1,11 @@
 <!--pages/detail/index.wxml-->
-<navigation-bar default-data="{{defaultData}}" />
+
+<scroll-view scroll-y="{{true}}" upper-threshold="50" bindscroll="handleScrollTop">
+  <navigation-bar default-data="{{defaultData}}" class="nav" />
+  <view class="map">
+    <map id="map" markers="{{markers}}" enable-zoom="{{false}}" enable-scroll="{{false}}" class="map" name="map"
+      latitude="{{itemData.latitude}}" scale='16' longitude="{{itemData.longitude}}"></map>
+  </view>
+
+  <view class="scorll"></view>
+</scroll-view>
