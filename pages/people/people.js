@@ -128,12 +128,12 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res1) => {
-        // console.log(res1)
+        console.log(res1)
         // wx.setStorageSync('UserInfo', res1.userInfo)
         this.setData({
           UserInfo: {
             ...res1.userInfo,
-            avatar: res1.UserInfo.avatarUrl
+            avatar: res1.userInfo.avatarUrl || ""
           },
           isLogin: true
         })

@@ -1,11 +1,10 @@
-<!--pages/detail/index.wxml-->
-
-<scroll-view scroll-y="{{true}}" upper-threshold="50" bindscroll="handleScrollTop">
-  <navigation-bar default-data="{{defaultData}}" class="nav" />
+<!-- pages/detail/index.wxml -->
+<navigation-bar default-data="{{defaultData}}" class="nav" style="opacity:{{opacity}}" />
+<scroll-view id="scroll" scroll-y="{{true}}" style="height:{{client}}px" bindscroll="handleScrollTop" class="sclView">
+  <!-- <navigation-bar default-data="{{defaultData}}" /> -->
   <view class="map">
-    <map id="map" markers="{{markers}}" enable-zoom="{{false}}" enable-scroll="{{false}}" class="map" name="map"
-      latitude="{{itemData.latitude}}" scale='16' longitude="{{itemData.longitude}}"></map>
+    <map id="map" markers="{{markers}}" enable-zoom="{{false}}" enable-scroll="{{false}}" class="map" name="map" latitude="{{itemData.latitude}}" scale='16' longitude="{{itemData.longitude}}"></map>
+    <van-notice-bar class="notice" color="#1989fa" background="#ecf9ff" left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
   </view>
-
   <view class="scorll"></view>
 </scroll-view>

@@ -19,6 +19,10 @@
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   },
+  "usingComponents": {
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-toast": "@vant/weapp/toast/index"
+  },
   
   "tabBar": {
     "list": [{

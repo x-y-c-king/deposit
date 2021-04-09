@@ -1,8 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-// import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast"
-import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast"
 
 Page({
 	data: {

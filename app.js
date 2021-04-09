@@ -6,12 +6,13 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 获取导航栏高度
     // 获取系统信息
     const systemInfo = wx.getSystemInfoSync();
     // 胶囊按钮位置信息
     const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+    this.globalData.clientHeight = systemInfo.screenHeight;
+    // console.log(systemInfo)
     // 导航栏高度 = 状态栏到胶囊的间距（胶囊距上距离-状态栏高度） * 2 + 胶囊高度 + 状态栏高度
     this.globalData.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight;
     this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
@@ -75,5 +76,6 @@ App({
     menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
     menuBotton: 0, // 胶囊距底部间距（保持底部间距一致）
     menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
+    clientHeight: 0
   }
 })

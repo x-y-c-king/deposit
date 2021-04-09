@@ -1,4 +1,7 @@
+const { get } = require("../../utils/require");
+
 // pages/detail/index.js
+const app = getApp();
 Page({
 
   /**
@@ -10,9 +13,17 @@ Page({
       icon: true
     },
     itemData: {},
-    markers: []
+    markers: [],
+    client: app.globalData.clientHeight,
+    navBarHeight: app.globalData.navBarHeight,
+    opacity: 0,
+    menuRight: app.globalData.menuRight,
+    menuBotton: app.globalData.menuBotton,
+    menuHeight: app.globalData.menuHeight,
   },
-
+  get: function (tag) {
+    return this.data[tag]
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -31,7 +42,7 @@ Page({
         title: item.detail.nickName,
         icon: true
       },
-      markers:marker
+      markers: marker
     })
     console.log()
   },
@@ -84,7 +95,20 @@ Page({
   onShareAppMessage: function () {
 
   },
-  handleScrollTop: function(e) {
-    console.log(e)
+  handleScrollTop: function (e) {
+    const height = this.data.navBarHeight;
+    let scrollTop = e.detail.scrollTop;
+
+    let opacity;
+    if (scrollTop > height) {
+      opacity = 1;
+    } else if (scrollTop < 5) {
+      opacity = 0;
+    } else {
+      opacity = scrollTop / height;
+    }
+    this.setData({
+      opacity: opacity
+    })
   }
 })

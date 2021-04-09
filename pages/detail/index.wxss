@@ -1,7 +1,14 @@
 /* pages/detail/index.wxss */
 .map {
   width: 100%;
-  height: 400rpx;
+  height: 500rpx;
+  position: relative;
+}
+.notice {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 .nav {
   opacity: 0;
@@ -13,6 +20,6 @@
   left: 0;
 }
 .scorll {
-  width: 100%;
+
   height: 200vh;
 }

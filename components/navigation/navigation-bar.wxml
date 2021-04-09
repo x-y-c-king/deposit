@@ -1,10 +1,8 @@
 <!--components/navigation-bar.wxml-->
 <!-- 自定义顶部栏 -->
 <view class="nav-bar" style="height:{{navBarHeight}}px;" vx:if="{{defaultData.icon}}">
- 
-
   <view class="bar-title"
-    style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{menuHeight}}px; left:{{menuRight}}px; bottom:{{menuBotton}}px;">
+    style="height:{{menuHeight}}px; min-height:{{menuHeight}}px;  left:{{menuRight}}px; bottom:{{menuBotton}}px;">
     <view class="icon-back" wx:if="{{defaultData.icon}}" bindtap="handleBarBack">
       <van-icon name='arrow-left'  />
     </view>
@@ -12,4 +10,5 @@
     
   </view>
 </view>
+<view class="bj"></view>
 <view class="clear" style="margin-top:{{navBarHeight}}px;"></view>

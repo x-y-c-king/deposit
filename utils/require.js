@@ -1,5 +1,5 @@
 let params = {}
-const BaseUrl = "http://192.168.2.24:8081"
+const BaseUrl = "http://xie-y-c.top:3000"
 const get = function (url, data = {}) {
   url = BaseUrl + url;
   return new Promise((resolve, reject) => {
