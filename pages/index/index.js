@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+import {
+	getBusiness
+} from "../../service/api"
 Page({
 	data: {
 		motto: 'Hello World',
@@ -15,13 +17,13 @@ Page({
 		markers: [],
 		hashMapShow: false,
 		showMaker: false,
-		mapCtx:null,
+		mapCtx: null,
 		controls: '40',
 		lastIndex: null,
-		itemData:{},
+		itemData: {},
 		item: {}
 	},
-	onReady: function() {
+	onReady: function () {
 		this.data.mapCtx = wx.createMapContext('map')
 
 	},
@@ -31,33 +33,32 @@ Page({
 			url: '../logs/logs'
 		})
 	},
-	handleControl:function(e){
-	},
+	handleControl: function (e) {},
 	handleMaker: function (marker) { //点击地图时候触发
 		// marker
 		let id = marker.detail.markerId;
 		let key;
-		for(let i=0;i<this.data.markers.length;i++) {
+		for (let i = 0; i < this.data.markers.length; i++) {
 			let item = this.data.markers[i];
-			if(item.id === id) {
+			if (item.id === id) {
 				key = i;
 				break;
 			}
 		}
-		if(this.data.lastIndex !== null ) { //改变上一个点击的状态
+		if (this.data.lastIndex !== null) { //改变上一个点击的状态
 			let then = this.data.markers;
 			then[this.data.lastIndex].width = 50;
 			then[this.data.lastIndex].height = 50;
 			this.setData({
-				markers:then
+				markers: then
 			})
 		}
 		const item = this.data.markers[key];
-		
+
 		this.setData({
 			lastIndex: key,
 			itemData: item.detail,
-			item:item
+			item: item
 		})
 		// this.data.lastItem = this.data.markers[key];
 		let then = this.data.markers;
@@ -68,37 +69,36 @@ Page({
 			// selectLog: item.longitude,
 			// selectLat: item.latitude,
 			showMaker: true,
-			markers:then
+			markers: then
 		})
 		this.data.mapCtx.moveToLocation({
-			longitude:item.longitude,
-			latitude:item.latitude,
-			success:(res)=>{}
+			longitude: item.longitude,
+			latitude: item.latitude,
+			success: (res) => {}
 		})
 
 	},
-	handleLabel(e) {
-	},
-	handleMap: function(e) {
-		if(this.data.lastIndex !== null) {
+	handleLabel(e) {},
+	handleMap: function (e) {
+		if (this.data.lastIndex !== null) {
 			let then = this.data.markers;
 			then[this.data.lastIndex].width = 50;
 			then[this.data.lastIndex].height = 50;
 			this.setData({
-				markers:then,
-				showMaker:false
+				markers: then,
+				showMaker: false
 			})
 		}
 	},
 	callouttap: function () {},
 	labeltap: function () {},
-	handleToDetail: function(e) {
+	handleToDetail: function (e) {
 		wx.navigateTo({
-			url: '../detail/index?item='+encodeURIComponent(JSON.stringify(this.data.item))
+			url: '../detail/index?item=' + encodeURIComponent(JSON.stringify(this.data.item))
 			// events: this.data.itemData
 		})
 	},
-	
+
 	onLoad: function () {
 		wx.getLocation({
 			type: 'gcj02',
@@ -106,41 +106,45 @@ Page({
 				var latitude = res.latitude // 纬度
 				var longitude = res.longitude // 经度
 				var markers = [];
-				for (var i = 0; i < 10; i++) {
-					markers.push({
-						id: i + 1,
-						longitude: longitude - i * 0.0010,
-						latitude: latitude - i * 0.0010,
-						iconPath: '/image/location.png',
-						width: 50,
-						height:50,
-						detail:{
-							avatar:"http://thirdqq.qlogo.cn/g?b=oidb&k=7GXVHxgiaxYjhic7P6f7X4Pw&s=100&t=1614320303",
-							nickName: "重庆北站寄存点"+i,
-							price:[{
-								title:'10元/件/天'
-							},{
-								title:"5元/件/天"
-							}],
-							startTimer:"8：30",
-							endTimer:"20：00",
-							address: "重庆市渝北区黄山大道东路王家桥社区8栋"
-						}
-						// customCallout: {
-						// 	anchorY: 60,
-						// 	anchorX: 0,
-						// 	display: 'BYCLICK'
-						// }
-					})
-				}
-				this.setData({
-					lat: latitude,
-					log: longitude,
-					markers,
-					hashMapShow: true,
-				})
+				// console.log(res);
+				this.getAllBusiness(res);
+				// for (var i = 0; i < 10; i++) {
+				// 	markers.push({
+				// 		id: i + 1,
+				// 		longitude: longitude - i * 0.0010,
+				// 		latitude: latitude - i * 0.0010,
+				// 		iconPath: '/image/location.png',
+				// 		width: 50,
+				// 		height:50,
+				// 		detail:{
+				// 			avatar:"http://thirdqq.qlogo.cn/g?b=oidb&k=7GXVHxgiaxYjhic7P6f7X4Pw&s=100&t=1614320303",
+				// 			nickName: "重庆北站寄存点"+i,
+				// 			price:[{
+				// 				title:'10元/件/天'
+				// 			},{
+				// 				title:"5元/件/天"
+				// 			}],
+				// 			startTimer:"8：30",
+				// 			endTimer:"20：00",
+				// 			address: "重庆市渝北区黄山大道东路王家桥社区8栋"
+				// 		}
+				// 		// customCallout: {
+				// 		// 	anchorY: 60,
+				// 		// 	anchorX: 0,
+				// 		// 	display: 'BYCLICK'
+				// 		// }
+				// 	})
+				// }
+				// this.setData({
+				// 	lat: latitude,
+				// 	log: longitude,
+				// 	markers,
+				// 	hashMapShow: true,
+				// })
 			}
 		})
+
+
 
 		// if (app.globalData.userInfo) {
 		//   this.setData({
@@ -169,6 +173,39 @@ Page({
 		//   })
 		// }
 	},
-	getUserInfo: function (e) {
-	}
+	getAllBusiness: function (result) {
+		const url = "/user/getAllBusiness"
+		getBusiness(url).then(res => {
+			const data = res.data;
+			let business = [];
+			for (let i = 0; i < data.length; i++) {
+				let item = data[i];
+				business.push({
+					// ...item,
+					id: item.id,
+					longitude: item.log,
+					latitude: item.lat,
+					iconPath: '/image/location.png',
+					width: 50,
+					height: 50,
+					detail: {
+						...item,
+						price: item.priceType.split(',').forEach(item => {
+							// console.log(item)
+							return item + "元/件/天"
+						})
+					}
+				})
+			}
+
+			this.setData({
+				lat: result.latitude,
+				log: result.longitude,
+				markers: business,
+				hashMapShow: true,
+			})
+		})
+		
+	},
+	getUserInfo: function (e) {}
 })
