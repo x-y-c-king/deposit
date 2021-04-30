@@ -1,5 +1,5 @@
 const { get } = require("../../utils/require");
-
+import { getBusinessInfo } from "../../service/api";
 // pages/detail/index.js
 const app = getApp();
 Page({
@@ -20,6 +20,7 @@ Page({
     menuRight: app.globalData.menuRight,
     menuBotton: app.globalData.menuBotton,
     menuHeight: app.globalData.menuHeight,
+    PageInfo: {}
   },
   get: function (tag) {
     return this.data[tag]
@@ -36,6 +37,8 @@ Page({
       width: 65,
       height: 65,
     }]
+    let info = this.getBusInfo(item);
+    
     this.setData({
       itemData: item,
       defaultData: {
@@ -44,7 +47,6 @@ Page({
       },
       markers: marker
     })
-    console.log()
   },
 
   /**
@@ -110,5 +112,12 @@ Page({
     this.setData({
       opacity: opacity
     })
+  },
+  getBusInfo: function(item) {
+    // const url = 
+    // console.log(getBusinessInfo)
+    //  getBusinessInfo({id: item.id }).then( (res) => {
+    //   //  console.log(res)
+    // })
   }
 })
