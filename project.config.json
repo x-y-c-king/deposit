@@ -21,27 +21,30 @@
     "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "bundle": false,
+    "bundle": true,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": true,
     "packNpmManually": true,
     "packNpmRelationList": [
       {
         "packageJsonPath": "./package.json",
         "miniprogramNpmDistDir": "./"
       }
-    ]
+    ],
+    "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.16.0",
+  "libVersion": "2.16.1",
   "appid": "wxc129c9e3281d88b9",
   "projectname": "study",
   "debugOptions": {
@@ -53,27 +56,21 @@
   "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "gamePlugin": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": -1,
       "list": []
     }
   }

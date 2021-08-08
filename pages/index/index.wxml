@@ -1,33 +1,41 @@
 <!-- index.wxml -->
 <view class="container">
-		<block vx:if='{{ hashMapShow }}'>
-				<map name="location" id="map" enable-poi="{{ true }}" class="map" markers='{{ markers }}' longitude='{{selectLog || log }}' latitude="{{selectLat || lat }}" scale='16' show-location='{{ true }}' bindcallouttap="callouttap" bindlabeltap="labeltap" bindmarkertap='handleMaker' bindlabeltap='handleLabel' bindtap='handleMap'>
-						
-				</map>
-				<view class="info" wx:if="{{showMaker}}">
-						<view class="detail-info">
-								<view class="detail-img">
-										<image src="{{itemData.avatar}}"></image>
-								</view>
-								<view class="detail-text">
-										<view class="name">
-												<text class="text">{{itemData.nickName}}</text>
-										</view>
-										<view class="price">
-												<text wx:for="{{itemData.price}}" wx:key="item">{{item.title}}</text>
-										</view>
-										<view class="timer">
-												<text class="timer">{{itemData.startTimer + itemData.endTimer}}</text>
-										</view>
-										<view class="address">
-												<text>{{itemData.address}}</text>
-										</view>
-										<view class="btn" bindtap="handleToDetail">
-												<text>查看详情></text>
-										</view>
-								</view>
-						</view>
-						<view></view>
+	<block>
+		<map name="location" id="map" enable-poi="{{ true }}" class="map" markers='{{ markers }}'
+			longitude='{{selectLog || log }}' latitude="{{selectLat || lat }}" scale='16' show-location='{{ true }}'
+			bindcallouttap="callouttap" bindlabeltap="labeltap" bindmarkertap='handleMaker' bindlabeltap='handleLabel'
+			bindtap='handleMap'>
+
+		</map>
+		<view class="info" wx:if="{{showMaker}}">
+			<view class="detail-info">
+				<view class="detail-img">
+					<image src="{{itemData.avatar}}"></image>
 				</view>
-		</block>
+				<view class="detail-text">
+					<view class="name">
+						<text class="text">{{itemData.nickName}}</text>
+					</view>
+					<view class="price">
+						<text wx:for="{{itemData.price}}" wx:key="item">{{item.title}}</text>
+					</view>
+					<view class="timer">
+						<text>周一~周日：</text>
+						<text>{{itemData.startTimer +'-'+ itemData.endTimer}}</text>
+						<!-- <text class="timer">{{itemData.startTimer + itemData.endTimer}}</text> -->
+					</view>
+					<view>
+						<van-rate value="{{ itemData.rating }}" bind:change="onChange" readonly allow-half />
+					</view>
+					<view class="address">
+						<text>{{itemData.address}}</text>
+					</view>
+					<view class="btn" bindtap="handleToDetail">
+						<text>查看详情></text>
+					</view>
+				</view>
+			</view>
+			<view></view>
+		</view>
+	</block>
 </view>

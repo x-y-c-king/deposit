@@ -1,7 +1,77 @@
 <!--pages/order/order.wxml-->
-<navigation-bar default-data="{{defaultData}}"></navigation-bar>
-<view wx:if="{{order.length===0}}" class="null" style="height:calc(100vh - {{barHeight}}px)">
-  <van-icon name='orders-o' />
-  <text>暂无订单</text>
+<!-- <view> -->
+<wxs module="filter" src="./../../filter/index.wxs"></wxs>
+<view class="order-home">
+  <navigation-bar default-data="{{defaultData}}"></navigation-bar>
+  <view wx:if="{{order.length===0}}" class="null" style="height:calc(100vh - {{barHeight}}px)">
+    <van-icon name='orders-o' />
+    <text wx:if="{{isLogin}}">暂无订单</text>
+    <text wx:else>请先登录</text>
+  </view>
+  <view wx:else class="order">
+    <view class="item" wx:for="{{order}}" wx:key="index">
+      <view class="info">
+        <view class="name">
+          <image src="{{item.business.avatar}}">
+          </image>
+          <text>{{item.business.nickName}}</text>
+        </view>
+        <view class="step">
+          <van-steps steps="{{ steps }}" active="{{ item.step }}" active-icon="success" active-color="#38f"
+            wx:if="{{item.cancel == 0}}" />
+          <view wx:else class="cancel">已取消</view>
+        </view>
+      </view>
+      <view class="content">
+        <view>
+          <view>订单编号：</view>
+          <view>{{item.orderId}}</view>
+        </view>
+        <view>
+          <view>开始时间：</view>
+          <view>{{ filter.formatDate( item.start) }}</view>
+        </view>
+        <view>
+          <view>结束时间：</view>
+          <view>{{ filter.formatDate( item.end) }}</view>
+        </view>
+        <view>
+          <view>订单数量：</view>
+          <view>
+            <view wx:if="{{item.box!==0}}">行李箱*{{item.box}}</view>
+            <view wx:if="{{item.pack!==0}}">背包*{{item.pack}}</view>
+          </view>
+        </view>
+        <view>
+          <view>联系商家：</view>
+          <view class="tel" data-tel="{{item.business.tel}}" bindtap="handleTel">
+            <van-icon data-tel="{{item.business.tel}}" catchtap="handleTel" name="phone-o" />
+          </view>
+        </view>
+      </view>
+      <view class="price">
+        实付款：￥<text>{{item.price}}</text>
+      </view>
+      <view class="del">
+        <view bindtap="handleOper" data-key="3" data-item="{{item}}" data-index="{{index}}"
+          wx:if="{{item.step===2 || item.cancel === 1}}">删除订单</view>
+        <view bindtap="handleOper" data-key="1" data-item="{{item}}" data-index="{{index}}"
+          wx:if="{{item.step===0 && item.cancel !== 1 }}">取消订单</view>
+        <view bindtap="handleOper" data-key="2" data-item="{{item}}" data-index="{{index}}"
+          wx:if="{{item.step===1 && item.cancel !== 1 }}">已完成</view>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{!finshed}}">
+      <van-loading type="spinner" color="#1989fa" />
+    </view>
+  </view>
 </view>
-<view wx:else>1</view>
+<!-- <view    class="null" style="height:calc(100vh - {{barHeight}}px)" wx:else>
+    <van-icon name='orders-o' />
+    <text>请先登录</text>
+  </view> -->
+<!--  <view wx:else class="null">
+    <van-icon name='orders-o' />
+    <text>暂无订单</text>
+  </view> -->
+<!-- </view> -->

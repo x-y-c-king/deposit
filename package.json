@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/x-y-c-king/deposit#readme",
   "dependencies": {
+    "@vant/area-data": "^1.1.1",
     "@vant/weapp": "^1.6.8",
     "weui-miniprogram": "^1.0.7"
   }

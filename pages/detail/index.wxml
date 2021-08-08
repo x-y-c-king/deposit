@@ -1,13 +1,118 @@
 <!-- pages/detail/index.wxml -->
+<wxs module="filter" src="./../../filter/index.wxs"></wxs>
 <navigation-bar default-data="{{defaultData}}" class="nav" style="opacity:{{opacity}}" />
 <scroll-view id="scroll" scroll-y="{{true}}" style="height:{{client}}px" bindscroll="handleScrollTop" class="sclView">
   <!-- <navigation-bar default-data="{{defaultData}}" /> -->
   <view class="map">
-    <map id="map" markers="{{markers}}" enable-zoom="{{false}}" enable-scroll="{{false}}" class="map" name="map" latitude="{{itemData.latitude}}" scale='16' longitude="{{itemData.longitude}}"></map>
-    <van-notice-bar class="notice" color="#1989fa" background="#ecf9ff" left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+    <map id="map" markers="{{markers}}" enable-zoom="{{false}}" enable-scroll="{{false}}" class="map" name="map"
+      latitude="{{itemData.latitude}}" scale='16' longitude="{{itemData.longitude}}"></map>
+    <van-notice-bar class="notice" color="#1989fa" background="#ecf9ff" left-icon="volume-o"
+      text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
   </view>
-  <view class="scorll"></view>
+  <view class="scorll">
+    <view class="title">
+      <text>{{pageDate.info.nickName}}</text>
+    </view>
+    <!-- <view class="num"></view> -->
+    <view class="item">
+      <view class="caption">
+        <text>寄存价格</text>
+      </view>
+      <view class="type1">
+        <view>行李箱类 ￥{{pageDate.price[1]}}元/件/天</view>
+        <view>行李箱、大背包、最大边长45cm的其他行李</view>
+      </view>
+      <view class="type2">
+        <view>背包类 ￥{{pageDate.price[0]}}元/件/天</view>
+        <view>行李箱、大背包、最大边长45cm的其他行李</view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="caption">
+        <text>营业时间</text>
+      </view>
+      <view class="type1">
+        <view>周一 ~ 周日 {{pageDate.info.startTimer}}-{{pageDate.info.endTimer}}</view>
+        <!-- <view>行李箱、大背包、最大边长45cm的其他行李</view> -->
+      </view>
+    </view>
+    <view class="item">
+      <view class="caption">
+        <text>门店位置</text>
+      </view>
+      <view class="type1">
+        <view>{{pageDate.info.address}}</view>
+        <view>寄存点联系电话将在下单后提供</view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="caption">
+        <text>门店介绍</text>
+      </view>
+      <view class="type1">
+        <view>{{pageDate.info.details}}</view>
+        <!-- <view>寄存点详细地址和联系电话将在下单后提供</view> -->
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="caption">
+        <text>店铺评价</text>
+      </view>
+      <view class="common">
+        <block wx:if="{{pageDate.common.length === 0}}">
+          <van-empty description="暂无用户评论" />
+        </block>
+        <block wx:else>
+          <view wx:for="{{pageDate.common}}" wx:key='item'>
+            <van-rate value="{{ item.rating }}" bind:change="onChange" readonly allow-half />
+            <view class="user-info">
+              <view class="user-avatar">
+                <image
+                  src="{{item.userInfo.avatar || 'https://thirdwx.qlogo.cn/mmopen/vi_32/o0ulo5rmLYOfbVC7cnxbpDH3h9BU808nP8ND0hZC0k3Qrggau3yOG5aKoFtzgCRTB4OMtHIuWq1Q3A3PnU7Nicg/132'}}">
+                </image>
+              </view>
+              <view class="user-name">
+                <view>{{item.userInfo.name}}</view>
+                <view>{{filter.timeYMD(item.timer) }}</view>
+              </view>
+            </view>
+            <view class="content">{{item.content}}</view>
+            <view bindtap="handleToCommon" class="more">查看更多</view>
+          </view>
+        </block>
+
+      </view>
+    </view>
+
+
+    <view class="item">
+      <view class="caption">
+        <text>预定须知</text>
+      </view>
+      <view class="list">
+        <view>
+          <van-icon name="like" /> 基本要求<text>禁止寄存违禁物品，建议贵重物品不寄存!</text></view>
+        <view>
+          <van-icon name="warning" /> 寄存提示<text>请先下单再到到店寄存，没有订单信息，无法寄存!</text></view>
+        <view>
+          <van-icon name="fire" /> 取消政策<text>存入日期0点前免费取消，存入日期24点前取消收取订单金额20%取消费，之后不可取消</text></view>
+        <!-- <view>寄存点详细地址和联系电话将在下单后提供</view> -->
+        <!-- <view class="more"  bindtap="handleToWarning">查看更多</view> -->
+      </view>
+    </view>
+    <view class="footer">
+      <image src="../../image/footer.jpg"></image>
+    </view>
+  </view>
   <view class="btn">
-    
+    <view class="service"></view>
+    <view class="to_index" bindtap="handlePay">寄存下单</view>
   </view>
 </scroll-view>
+
+<view class="loading" wx:if="{{loading}}">
+  <van-loading type="spinner" color="#1989fa" />
+</view>
+
+<van-toast id="van-toast"></van-toast>

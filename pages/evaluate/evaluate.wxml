@@ -1,0 +1,45 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class="page">
+  <navigation-bar default-data="{{defaultData}}"></navigation-bar>
+  <view class="content">
+    <view class="item">
+      <view class="business">
+        <view class="avatar">
+          <image
+            src="{{item.business.avatar}}">
+          </image>
+        </view>
+        <view class="name">{{ item.business.nickName}}</view>
+      </view>
+      <view class="rating">
+        <view>商家评价:</view>
+        <van-rate value="{{ form.rating }}" bind:change="onChange" allow-half />
+      </view>
+      <view class="input">
+        <van-cell-group>
+          <van-field bind:input="handleInput" value="{{ form.content }}" type="textarea" placeholder="请输入评价" autosize="{{autosize}}"
+            border="{{ false }}" />
+        </van-cell-group>
+      </view>
+    </view>
+
+    <view class="item">
+      <view>{{item.business.nickName}}</view>
+      <view class="rating">
+        <view>环境评价:</view>
+        <van-rate value="{{ form.rating1 }}" bind:change="onChange1" allow-half />
+      </view>
+      <view class="rating">
+        <view>服务评价:</view>
+        <van-rate value="{{ form.rating2}}" bind:change="onChange2" allow-half />
+      </view>
+    </view>
+    
+    <view class="footer">
+      <view class="btn" bindtap="handleEval">
+        确认
+      </view>
+    </view>
+  </view>
+</view>
+<van-toast id="van-toast"></van-toast>

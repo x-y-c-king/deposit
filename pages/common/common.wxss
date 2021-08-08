@@ -1,0 +1,39 @@
+/* pages/common/common.wxss */
+.item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: flex;
+  line-height: 50rpx;
+}
+.item:not(:first-child) {
+  border-top: 1rpx solid #acc;
+}
+.avatar {
+  flex: 1;
+  height: 150rpx;
+}
+.avatar > image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.info{
+  flex: 3;
+  
+}
+.info > .rate {
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.loading {
+  width: 100vw;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

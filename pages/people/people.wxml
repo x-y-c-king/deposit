@@ -17,11 +17,50 @@
       </view>
     </view>
   </view>
+  <van-grid class="people-grid" column-num="4">
+    <van-grid-item text-class='text' icon="shopping-cart-o" text="足迹" />
+    <van-grid-item text-class='text' icon="comment-o" text="我的评价" />
+    <!-- <van-grid-item icon="photo-o" text="消费统计" /> -->
+    <van-grid-item text-class='text' icon="question-o" text="常见问题" />
+    <van-grid-item text-class='text' icon="chat-o" text="我的消息" />
+  </van-grid>
   <view class="list">
     <van-cell-group custom-class="cell-group">
-      <van-cell icon="{{ item.icon }}" title="{{ item.title }}" wx:for="{{List}}" data-item="{{item}}" wx:for-item='item'
-        wx:for-index='{{index}}' wx:key='index' is-link bindtap="handleCellClick" custom-class='my-cell' />
+      <van-cell title-class='people-title' icon="{{ item.icon }}" title="{{ item.title }}" wx:for="{{List}}"
+        data-item="{{item}}" wx:for-item='item' wx:for-index='{{index}}' wx:key='index' is-link
+        bindtap="handleCellClick" custom-class='my-cell' />
     </van-cell-group>
   </view>
   <!-- <view></view> -->
 </view>
+<van-toast id="van-toast"></van-toast>
+
+<van-dialog use-slot title="账号查看" show="{{ show }}" show-confirm-button 
+ >
+  <!-- confirm-button-open-type="getUserInfo"
+  bind:getuserinfo="getUserInfo" -->
+  <view class="group">
+    <van-cell-group>
+      <van-cell title="账号" value="{{tel}}" />
+      <van-cell title="密码" value="123456" label="如果修改则无效" border="{{ false }}" />
+    </van-cell-group>
+  </view>
+  <!-- <image src="https://img.yzcdn.cn/1.jpg" /> -->
+</van-dialog>
+
+<van-dialog use-slot title="店铺状态" show="{{ switch }}" show-confirm-button 
+ >
+
+
+  <!-- confirm-button-open-type="getUserInfo"
+  bind:getuserinfo="getUserInfo" -->
+  <view class="group-switch">
+    <van-switch checked="{{ checked }}" bind:change="onChange" loading="{{loading}}" />
+  </view>
+    <!-- <van-cell-group>
+      <van-cell title="账号" value="{{tel}}" />
+      <van-cell title="密码" value="123456" label="如果修改则无效" border="{{ false }}" />
+    </van-cell-group> -->
+  
+  <!-- <image src="https://img.yzcdn.cn/1.jpg" /> -->
+</van-dialog>

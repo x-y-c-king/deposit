@@ -1,0 +1,73 @@
+<!--pages/pay/pay.wxml-->
+<view class="page">
+  <navigation-bar default-data="{{defaultData}}" class="nav" style="opacity:{{opacity}}" />
+  <view class="header">
+    <!-- <button bindtap="onPopup">显示</button> -->
+  </view>
+  <view class="content">
+    <view>
+      <view>开始时间</view>
+      <view class="my-input" bindtap="onPopup" data-type="1">
+        <text>{{start}}</text>
+        <view class="van-icon">
+          <van-icon size='40rpx' name="todo-list" slot="button" />
+        </view>
+      </view>
+
+      <view>结束时间</view>
+      <view class="my-input" bindtap="onPopup" data-type='2'>
+        <text>{{end}}</text>
+        <view class="van-icon">
+          <van-icon size='40rpx' name="todo-list" slot="button" />
+        </view>
+      </view>
+      <view class="bar">
+        <view class="details">
+          <view>行李箱类</view>
+          <view>行李箱、大背包及最大边长大于45cm的行李</view>
+        </view>
+        <view class="price">
+          <view class="add" bindtap="handleRemove"  data-type='1'>-</view>
+          <view class="num">{{num1}}</view>
+          <view class="remove" bindtap="handleAdd" data-type='1'>+</view>
+        </view>
+      </view>
+      <view class="bar">
+        <view class="details">
+          <view>背包类</view>
+          <view>背包、手提包及最大边长小于45cm的行李</view>
+        </view>
+        <view class="price">
+          <view class="add" bindtap="handleRemove"  data-type='2'>-</view>
+          <view class="num">{{num2}}</view>
+          <view class="remove" bindtap="handleAdd" data-type='2'>+</view>
+        </view>
+      </view>
+
+      <view class="count">
+        <view>支付金额</view>
+        <view>￥{{count}}</view>
+      </view>
+    </view>
+
+  </view>
+  <view class="list">
+    <view>
+      <van-icon name="like" /> 基本要求<text>禁止寄存违禁物品，建议贵重物品不寄存!</text></view>
+    <view>
+      <van-icon name="warning" /> 寄存提示<text>请先下单再到到店寄存，没有订单信息，无法寄存!</text></view>
+  </view>
+  <view class="footer">
+    <view class="btn" bindtap="handlePay">
+      确认支付
+    </view>
+  </view>
+</view>
+
+
+<van-popup show="{{ show }}" position="bottom" custom-style="height: 45%;" bind:close="onClose">
+  <van-datetime-picker type="date" value="{{ currentDate }}" bind:input="onInput" bind:confirm="handleConfirm"
+    min-date="{{ minDate }}" max-date="{{maxDate}}" formatter="{{ formatter }}" />
+</van-popup>
+
+<van-toast id="van-toast"></van-toast>

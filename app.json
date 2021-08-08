@@ -1,11 +1,16 @@
 {
   "pages": [
-    
+
     "pages/index/index",
     "pages/order/order",
     "pages/people/people",
     "pages/business/index",
-    "pages/detail/index"
+    "pages/detail/index",
+    "pages/pay/pay",
+    "pages/common/common",
+    "pages/manage/manage",
+    "pages/evaluate/evaluate"
+
   ],
   "permission": {
     "scope.userLocation": {
@@ -21,27 +26,42 @@
   },
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-steps": "@vant/weapp/steps/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-switch": "@vant/weapp/switch/index"
   },
-  
+
   "tabBar": {
     "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "./image/home.png",
-      "selectedIconPath": "./image/select-home.png"
-    },
-    {
-      "pagePath": "pages/order/order",
-      "text": "订单",
-      "iconPath": "./image/order.png",
-      "selectedIconPath": "./image/select-order.png"
-    },{
-      "pagePath": "pages/people/people",
-      "text": "个人中心",
-      "iconPath": "./image/my.png",
-      "selectedIconPath": "./image/select-my.png"
-    }]
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./image/home.png",
+        "selectedIconPath": "./image/select-home.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "./image/order.png",
+        "selectedIconPath": "./image/select-order.png"
+      }, {
+        "pagePath": "pages/people/people",
+        "text": "个人中心",
+        "iconPath": "./image/my.png",
+        "selectedIconPath": "./image/select-my.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,5 +1,6 @@
 // pages/people/people.js
 // import { getUserInfo,setUserInfo } from "../../service/api"
+import Toast from './../../miniprogram_npm/vant-weapp/toast/toast'
 const api = require("../../service/api")
 const app = getApp();
 Page({
@@ -21,10 +22,6 @@ Page({
       "icon": "friends-o",
       "title": "商家入驻"
     }, {
-      "id": 2,
-      "icon": "friends-o",
-      "title": "店铺管理"
-    }, {
       "id": 3,
       "icon": "coupon-o",
       "title": "我的优惠券"
@@ -41,6 +38,12 @@ Page({
       "icon": "setting-o",
       "title": "设置"
     }],
+    business: null,
+    show: false,
+    switch: false,
+    tel: "",
+    checked: false,
+    loading: false
   },
   chile: function (e) {
     console.log(e);
@@ -56,6 +59,44 @@ Page({
         UserInfo: app.globalData.userInfo,
         isLogin: true
       })
+      console.log(app.globalData.business)
+      if (app.globalData.business != null) {
+        // this.data.business = app.globalData.business;
+        const List = [{
+          "id": 7,
+          "icon": "friends-o",
+          "title": "后台账号查看"
+        }, {
+          "id": 8,
+          "icon": "setting-o",
+          "title": "店铺开关"
+        }, {
+          "id": 2,
+          "icon": "friends-o",
+          "title": "店铺管理"
+        }, {
+          "id": 3,
+          "icon": "coupon-o",
+          "title": "我的优惠券"
+        }, {
+          "id": 4,
+          "icon": "orders-o",
+          "title": "用户协议"
+        }, {
+          "id": 5,
+          "icon": "bulb-o",
+          "title": "隐私政策"
+        }, {
+          "id": 6,
+          "icon": "setting-o",
+          "title": "设置"
+        }];
+
+        this.setData({
+          List,
+          business: app.globalData.business
+        })
+      }
     }
   },
 
@@ -75,8 +116,47 @@ Page({
         })
         break;
       case 2:
+        wx.navigateTo({
+          url: '../manage/manage?id=' + app.globalData.business,
+        })
+        console.log("店铺查看")
+        break;
+      case 7:
+        const {
+          userName
+        } = api;
+        userName({
+          id: app.globalData.business
+        }).then((res) => {
+          if (res.status === 200) {
+            this.setData({
+              tel: res.data,
+              show: true
+            })
+            // this
+          }
+        })
+        console.log('账号查看');
+        break
+      case 8:
+        const {
+          getOpen
+        } = api;
+        getOpen({
+          id: app.globalData.business
+        }).then(res => {
+          this.setData({
+            switch: true,
+            checked: res.data == 1 ? true : false
+          })
+        })
+
         break;
       default:
+        Toast({
+          message: "功能还未开发",
+          position: "bottom"
+        })
         console.log("信息不存在！")
     }
   },
@@ -85,7 +165,73 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // console.log("显示")
+    if (app.globalData.business != null && this.data.business == null) {
+
+      const List = [{
+        "id": 7,
+        "icon": "friends-o",
+        "title": "后台账号查看"
+      }, {
+        "id": 2,
+        "icon": "friends-o",
+        "title": "店铺管理"
+      }, {
+        "id": 3,
+        "icon": "coupon-o",
+        "title": "我的优惠券"
+      }, {
+        "id": 4,
+        "icon": "orders-o",
+        "title": "用户协议"
+      }, {
+        "id": 5,
+        "icon": "bulb-o",
+        "title": "隐私政策"
+      }, {
+        "id": 6,
+        "icon": "setting-o",
+        "title": "设置"
+      }];
+
+      this.setData({
+        List,
+        business: app.globalData.business
+      })
+    }
+  },
+
+  onChange(event) {
+    // console.log(event.detail)
+    const {
+      switchShop
+    } = api;
+    if (this.data.loading) {
+      return
+    }
+    this.setData({
+      loading: true
+    })
+    switchShop({
+      id: app.globalData.business,
+      flag: event.detail
+    }).then((res) => {
+      if (res.status === 200) {
+        this.setData({
+          checked: event.detail
+        })
+      }
+      this.setData({
+        loading: false,
+      })
+    }).catch((err) => {
+      this.setData({
+        loading: false,
+      })
+    })
+
+    // this.setData({
+    //   checked: event.detail
+    // })
   },
 
   /**
@@ -136,6 +282,11 @@ Page({
             avatar: res1.userInfo.avatarUrl || ""
           },
           isLogin: true
+        })
+        app.globalData.isLogin = true;
+        wx.setStorageSync('UserInfo', {
+          ...res1.userInfo,
+          avatar: res1.userInfo.avatarUrl || ""
         })
         this.sendUserInfo(res1.userInfo, userid);
       }

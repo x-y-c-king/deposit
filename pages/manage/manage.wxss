@@ -1,0 +1,77 @@
+/* pages/manage/manage.wxss */
+.my {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.null {
+  min-height: 80vh;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list {
+  min-height: 100vh;
+}
+
+.item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: flex;
+  line-height: 50rpx;
+  align-items: center;
+}
+.item:not(:first-child) {
+  border-top: 1rpx solid #acc;
+}
+.avatar {
+  flex: 1;
+  /* height: 100rpx; */
+  height: 100%;
+}
+.avatar > image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.info{
+  flex: 5;
+  margin-left: 15rpx;
+  
+}
+.btn {
+  flex: 1;
+  line-height: 50rpx;
+  background-color: #409EFF;
+  text-align: center;
+  color: white;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+}
+.btn1 {
+  flex: 1;
+  line-height: 50rpx;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: white;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+}
+.info > .rate {
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.loading {
+  width: 100vw;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

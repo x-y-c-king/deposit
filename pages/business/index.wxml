@@ -3,40 +3,78 @@
 <navigation-bar default-data="{{ defaultData }}"></navigation-bar>
 <van-cell-group>
   <!-- <text>用户名</text> -->
-  <van-field label='店铺名称' model:value="{{ form.name }}" placeholder="请输入店铺名称" border="{{ false }}" />
-
+  <van-field label='店铺名称' bind:input="handleInput" data-type="1"  model:value="{{ form.nickName }}" placeholder="请输入店铺名称" border="{{ false }}" />
 </van-cell-group>
 <van-cell-group>
   <view class="upload">
     <text>店铺头像</text>
     <view>
-      <van-uploader label="店铺头像" file-list="{{ form.avatar }}" bind:after-read="afterRead" />
+      <van-uploader label="店铺头像" file-list="{{ fileList }}"  mutiple="{{true}}" bind:after-read="afterRead" />
     </view>
   </view>
 </van-cell-group>
 <van-cell-group>
-  <van-field label='店铺负责人' model:value="{{ form.user }}" placeholder="请输入店铺负责人姓名" border="{{ false }}" />
+  <van-field label='店铺负责人' bind:input="handleInput" data-type="2" model:value="{{ form.name }}" placeholder="请输入店铺负责人姓名" border="{{ false }}" />
 </van-cell-group>
 <van-cell-group>
-  <van-field label='联系方式' model:value="{{ form.tel }}" placeholder="请输入联系方式" border="{{ false }}" />
+  <van-field label='联系方式' bind:input="handleInput" data-type="3" model:value="{{ form.tel }}" placeholder="请输入联系方式" border="{{ false }}" />
 </van-cell-group>
 <van-cell-group>
-  <van-field label='店铺位置' model:value="{{ form.address }}" placeholder="请输入店铺地址" border="{{ false }}" />
+  <van-cell title="店铺位置" value="{{form.address}}" size="large" is-link bindtap="hanldeFocus" />
+  <!-- <van-field label='店铺位置' bind:focus='hanldeFocus' model:value="{{ form.address }}" placeholder="请输入店铺地址" border="{{ false }}" /> -->
 </van-cell-group>
 
 <van-cell-group>
-  <van-field label='店铺位置' model:value="{{ form.address }}" placeholder="请输入店铺地址" border="{{ false }}" />
+  <van-field label='详细位置' bind:input="handleInput" data-type="4" model:value="{{ form.detailsAdd }}" placeholder="请输入店铺地址" border="{{ false }}" />
 </van-cell-group>
 
 <van-cell-group>
-  <view class="upload">
-    <text>获取经纬度</text>
-    <view>
-      <van-button round type="info">获取经纬度</van-button>
-    </view>
-  </view>
+  <van-cell title="获取经纬度" value="{{(form.log || '经度') +'-'+ (form.lat || '纬度')}}" size="large" is-link
+    bindtap="hanldeLocation" />
 </van-cell-group>
-  <view class="submit">
-    <van-button type="primary" round>提交</van-button>
 
-  </view>
+<van-cell-group>
+  <van-field label='背包数量' bind:input="handleInput" data-type="5" model:value="{{ form.pack }}" placeholder="请输入店铺库存" border="{{ false }}" />
+</van-cell-group>
+<van-cell-group>
+  <van-field label='行李箱数量' bind:input="handleInput" data-type="6" model:value="{{ form.box }}" placeholder="请输入店铺库存" border="{{ false }}" />
+</van-cell-group>
+<van-cell-group>
+  <van-field type="textarea" bind:input="handleInput" data-type="7" autosize="{{autosize}}" label='店铺描述' model:value="{{ form.details }}" placeholder="请输入店铺描述" border="{{ false }}" />
+</van-cell-group>
+
+<van-cell-group>
+  <van-cell title="开始时间"  value="{{form.start}}" size="large" data-flag="1" is-link bindtap="hanldeTimer" />
+</van-cell-group>
+<van-cell-group>
+  <van-cell title="结束时间" value="{{form.end}}" size="large" data-flag="2" is-link bindtap="hanldeTimer" />
+</van-cell-group>
+
+<van-cell-group>
+  <van-field label='背包类价格' bind:input="handleInput" data-type="8" model:value="{{ form.price[0] }}" placeholder="请输入寄存价格" border="{{ false }}" />
+</van-cell-group>
+<van-cell-group>
+  <van-field label='行李箱类价格' bind:input="handleInput" data-type="9" model:value="{{ form.price[1] }}" placeholder="请输入寄存价格" border="{{ false }}" />
+</van-cell-group>
+
+
+
+<view class='clear'></view>
+<view class="submit">
+  <van-button type="primary" bindtap="handleSubmit" round>提交</van-button>
+
+</view>
+
+<van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%" bind:close="onClose">
+  <van-area area-list="{{ areaList }}" bind:confirm='handleConfirm' bind:cancel="handleCancel" />
+</van-popup>
+
+
+
+<van-popup show="{{ showTimer }}" round position="bottom" custom-style="height: 40%" bind:close="onClose">
+  <van-datetime-picker type="time" value="{{ currentDate }}" 
+  bind:confirm='handleconf' bind:cancel='handleCan' 
+     />
+</van-popup>
+
+<van-toast id="van-toast"></van-toast>

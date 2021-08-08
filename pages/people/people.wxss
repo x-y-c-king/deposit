@@ -45,9 +45,33 @@
 }
 
 .my-cell {
-  font-size: 36rpx !important;
+  font-size: 32rpx !important;
   height: 120rpx !important;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  box-sizing: border-box;
+  padding: 0 50rpx !important;
+}
+/* .people-grid {
+  font-size: 36rpx !important;
+} */
+.text{
+  font-size: 26rpx !important;
+}
+
+.people-title{
+  font-size: 32rpx !important;
+  margin-left: 10rpx;
+}
+.group {
+  padding: 80rpx 0;
+  /* align-items: center;
+  justify-content: center; */
+}
+.group-switch{
+  padding: 80rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

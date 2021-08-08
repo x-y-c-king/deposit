@@ -1,0 +1,25 @@
+function add(val) {
+  return val < 10 ? '0' + val : val;
+}
+var filter = {
+  timeYMD: function (time) {
+    var date = getDate(time);
+    var year = add(date.getFullYear())
+    var month = add(date.getMonth() + 1);
+    var day = add(date.getDate());
+    return (year + '年' + month + '月' + day + '日');
+  },
+  formatDate: function(time) {
+    var date = getDate(parseInt(time));
+    var year = add(date.getFullYear())
+    var month = add(date.getMonth() + 1);
+    var day = add(date.getDate());
+    date.getMin
+    var horse = add(date.getHours());
+    var minuse = add(date.getMinutes());
+    var sencord = add(date.getSeconds());
+    return (year + '-' + month + '-' + day + ' ' + horse + ":" + minuse +":" + sencord);
+    
+  }
+}
+module.exports = filter

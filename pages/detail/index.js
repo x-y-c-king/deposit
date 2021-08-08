@@ -1,5 +1,10 @@
-const { get } = require("../../utils/require");
-import { getBusinessInfo } from "../../service/api";
+const {
+  get
+} = require("../../utils/require");
+import {
+  getBusinessInfo
+} from "../../service/api";
+import Toast from './../../miniprogram_npm/vant-weapp/toast/toast'
 // pages/detail/index.js
 const app = getApp();
 Page({
@@ -20,7 +25,9 @@ Page({
     menuRight: app.globalData.menuRight,
     menuBotton: app.globalData.menuBotton,
     menuHeight: app.globalData.menuHeight,
-    PageInfo: {}
+    PageInfo: {},
+    pageDate: {},
+    loading: true
   },
   get: function (tag) {
     return this.data[tag]
@@ -38,7 +45,7 @@ Page({
       height: 65,
     }]
     let info = this.getBusInfo(item);
-    
+    this.getPageDate(item.id);
     this.setData({
       itemData: item,
       defaultData: {
@@ -46,6 +53,30 @@ Page({
         icon: true
       },
       markers: marker
+    })
+
+
+  },
+  getPageDate(id) {
+    getBusinessInfo({
+      id
+    }).then((res) => {
+      this.setData({
+        loading: false
+      })
+      if (res.status === 200) {
+        this.setData({
+          pageDate: {
+            ...res.data,
+            price: res.data.info.priceType.split(',')
+          }
+        })
+      }
+
+    }).catch((err) => {
+      this.setData({
+        loading: false
+      })
     })
   },
 
@@ -113,11 +144,42 @@ Page({
       opacity: opacity
     })
   },
-  getBusInfo: function(item) {
+  handlePay: function () {
+    if (!app.globalData.isLogin) {
+      Toast({
+        message: "请先登录",
+        position: "bottom"
+      })
+      return
+    }
+    if (this.data.pageDate.info.open === 0) {
+      Toast({
+        message: "店铺也关闭！",
+        position: "bottom"
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '../pay/pay?item=' + encodeURIComponent(JSON.stringify(this.data.pageDate)),
+    })
+  },
+  getBusInfo: function (item) {
     // const url = 
     // console.log(getBusinessInfo)
     //  getBusinessInfo({id: item.id }).then( (res) => {
     //   //  console.log(res)
     // })
-  }
+  },
+  handleToWarning() {
+
+  },
+  handleToCommon() {
+    // Toast({
+    //   message: '请先登录',
+    //   position: "bottom"
+    // })
+    wx.navigateTo({
+      url: '../common/common?id=' + this.data.itemData.id
+    })
+  },
 })

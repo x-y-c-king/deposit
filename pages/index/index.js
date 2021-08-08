@@ -175,7 +175,10 @@ Page({
 	},
 	getAllBusiness: function (result) {
 		const url = "/user/getAllBusiness"
-		getBusiness(url).then(res => {
+		getBusiness(url, {
+			lat: result.latitude,
+			log: result.longitude
+		}).then(res => {
 			const data = res.data;
 			let business = [];
 			for (let i = 0; i < data.length; i++) {
@@ -202,6 +205,13 @@ Page({
 				lat: result.latitude,
 				log: result.longitude,
 				markers: business,
+				hashMapShow: true,
+			})
+		},(err)=>{
+			console.log(err)
+			this.setData({
+				lat: result.latitude,
+				log: result.longitude,
 				hashMapShow: true,
 			})
 		})

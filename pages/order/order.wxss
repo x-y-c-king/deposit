@@ -1,4 +1,29 @@
 /* pages/order/order.wxss */
+.tel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+  background: #409EFF;
+  border-radius: 50%;
+  border: 1px solid #000;
+  color: white;
+}
+.order-home {
+  padding-bottom: 50rpx;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: rgba(225, 225, 225, 0.6);
+}
+.cancel{
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 30rpx;
+  text-align: right;
+}
 .null {
   width: 100%;
   /* height: 100vh; */
@@ -13,4 +38,83 @@
 .null text {
   margin-top: 10rpx;
   font-size: 32rpx;
+}
+.order {
+  width: 100vw;
+  padding-top: 30rpx;
+  box-sizing: border-box;
+  
+}
+.item:not(:first-child){
+  margin-top: 20rpx;
+} 
+.item {
+  width: 700rpx;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 30rpx;
+  /* min-height: 500rpx; */
+  padding:20rpx 30rpx;
+  box-sizing: border-box;
+  /* min-height: 1; */
+}
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 60rpx;
+
+}
+.name {
+  width: 100%;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.name image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+.step {
+  flex: 1;
+}
+.content {
+  margin-top: 30rpx;
+  width: 100%;
+  line-height: 50rpx;
+}
+.content > view {
+  display: flex;
+  align-items: flex-start;
+}
+.price {
+  margin: 20rpx 0;
+  text-align: right;
+}
+.del {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.del > view {
+  margin-top: 15rpx;
+  width: 200rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1px solid rgba(200, 200, 200, 0.6);
+}
+
+
+.loading {
+  width: 100vw;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

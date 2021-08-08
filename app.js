@@ -3,9 +3,9 @@ import api from "./service/api"
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     // 获取导航栏高度
     // 获取系统信息
     const systemInfo = wx.getSystemInfoSync();
@@ -28,12 +28,18 @@ App({
         }).then((result) => {
           // if(re)
           wx.setStorageSync('userid', result.data.userId)
+          
           if (result.data.flag) {
+            console.log("app true")
             wx.setStorageSync('UserInfo', result.data)
             this.globalData.userInfo = result.data;
             this.globalData.userId = result.data.userId;
             this.globalData.isLogin = true;
+            if(result.data.isBusiness) {
+              this.globalData.business = result.data.businessId;
+            }
           } else {
+            console.log("app false")
             wx.setStorageSync('UserInfo', null)
             this.globalData.isLogin = false;
             this.globalData.userId = result.data.userId;
@@ -41,7 +47,7 @@ App({
         })
       }
     })
-    
+
     // 获取用户信息
     // wx.getSetting({
     //   success: res => {
@@ -76,6 +82,7 @@ App({
     menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
     menuBotton: 0, // 胶囊距底部间距（保持底部间距一致）
     menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
-    clientHeight: 0
+    clientHeight: 0,
+    business: null,
   }
 })

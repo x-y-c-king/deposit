@@ -64,12 +64,15 @@
 }
 
 .detail-text {
-  width: 50%;
+  width: 60%;
   height: 280rpx;
   /* background-color: green; */
   padding: 10rpx 0 0 10rpx;
   box-sizing: border-box;
   position: relative;
+}
+.detail-text > view{
+  margin-top: 15rpx;
 }
 
 .detail-text .price {
@@ -77,6 +80,7 @@
 }
 
 .detail-text .name {
+  margin-top: 0rpx;
   font-size: 28rpx;
   font-weight: 550;
 }
@@ -107,7 +111,8 @@
 .btn {
   position: absolute;
   bottom: 5rpx;
-  right: -20%;
+  /* right: -20%; */
+  right: 0;
   background-color: #409EFF;
   width: 7em;
   text-align: center;

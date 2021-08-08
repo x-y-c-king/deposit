@@ -1,0 +1,49 @@
+<!--pages/manage/manage.wxml-->
+<wxs module="filter" src="./../../filter/index.wxs"></wxs>
+<view class="my">
+  <navigation-bar default-data="{{defaultData}}"></navigation-bar>
+  <view class="null" wx:if="{{orderList.length === 0}}">
+    <van-empty description="店铺无订单" />
+  </view>
+  <view class="list" wx:else>
+    <view wx:for="{{orderList}}" wx:key='index' class="item">
+      <view class="avatar">
+        <image
+          src="{{item.user.avatar  || 'https://thirdwx.qlogo.cn/mmopen/vi_32/o0ulo5rmLYOfbVC7cnxbpDH3h9BU808nP8ND0hZC0k3Qrggau3yOG5aKoFtzgCRTB4OMtHIuWq1Q3A3PnU7Nicg/132'}}">
+        </image>
+      </view>
+      <view class="info">
+        <view>
+          开始时间：<text>{{filter.formatDate(item.start) }}</text>
+        </view>
+        <view>
+          结束时间：<text>{{filter.formatDate(item.end) }}</text>
+        </view>
+        <view>
+          寄存内容：<text>行李箱类*{{item.box}} 背包类*{{item.pack}}</text>
+        </view>
+        <!-- <view class="name">{{item.userInfo.name}}</view>
+        <view class="rate">
+          <view>
+            <van-rate readonly value="{{ item.rating }}" size='24rpx' bind:change="onChange" />
+          </view>
+          <view>{{filter.formatDate(item.timer) }}</view>
+        </view> -->
+        <!-- <view class="content">{{item.content}}</view> -->
+      </view>
+      <view class="btn1" wx:if="{{item.cancel===1}}">已取消</view>
+      <block wx:else>
+        <view class="btn" data-item="{{item}}" data-index="{{index}}" wx:if="{{item.step==0}}" bindtap="handleGet">收货</view>
+        <view class="btn1" wx:else>{{ item.step==1?"进行中":"已完成" }}</view>
+      </block>
+
+
+    </view>
+
+    <view class="loading" wx:if="{{!finshed}}">
+      <van-loading type="spinner" color="#1989fa" />
+    </view>
+  </view>
+</view>
+
+<van-toast id="van-toast"></van-toast>
